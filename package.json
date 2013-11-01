@@ -1,17 +1,24 @@
 {
-    "name": "fastjs",
-    "version": "0.0.1",
-    "description": "Generate a set of HTML with reusable components",
-    "author": {
-        "name": "Florian Margaine",
-        "email": "florian@margaine.com",
-        "url": "http://margaine.com"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/Ralt/fastjs"
-    },
-    "bin": "bin/fastjs",
-    "main": "lib/fastjs.js",
-    "license": "MIT License"
+  "name": "fastjs",
+  "version": "0.0.1",
+  "description": "Generate a set of HTML with reusable components",
+  "author": {
+    "name": "Florian Margaine",
+    "email": "florian@margaine.com",
+    "url": "http://margaine.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/Ralt/fastjs"
+  },
+  "bin": {
+    "fastjs": "bin/fastjs",
+    "fastjs-server": "bin/fastjs-server"
+  },
+  "main": "lib/fastjs.js",
+  "license": "MIT License",
+  "dependencies": {
+    "chokidar": "~0.7.0",
+    "mkdirp": "~0.3.5"
+  }
 }

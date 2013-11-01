@@ -1,0 +1,4 @@
+#!/usr/bin/env node
+
+var Fast = require('../lib/fastjs.js'),
+    fast = new Fast();
