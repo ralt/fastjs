@@ -1,11 +1,40 @@
 #!/usr/bin/env node
 
-var http = require('http');
+var http = require('http'),
+    path = require('path'),
+    chokidar = require('chokidar');
 
-http.get({
+var watcher = chokidar.watch(path.join(process.cwd(), 'src'));
+
+var options = {
     host: 'localhost',
-    port: 2504,
-    path: '/'
-}).on('error', function(err) {
-    throw err;
+    port: 2504
+};
+
+watcher.on('all', function(type, file, stat) {
+    var opts = JSON.parse(JSON.stringify(options));
+
+    opts.path = makePath(type, file);
+
+    http.get(opts).on('error', function(err) {
+        if (err) throw err;
+    });
 });
+
+function makePath(type, file) {
+    // Empty string as first to start with /
+    var uriPath = [''];
+
+    uriPath.push(type);
+
+    if (path.extname(file) === '.html') {
+        uriPath.push('html');
+    }
+    else {
+        uriPath.push('default');
+    }
+
+    uriPath.push(encodeURIComponent(file));
+
+    return uriPath.join('/');
+}
