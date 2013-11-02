@@ -4,7 +4,8 @@ var http = require('http'),
     path = require('path'),
     chokidar = require('chokidar');
 
-var watcher = chokidar.watch(path.join(process.cwd(), 'src'));
+var watcher = chokidar.watch(path.join(process.cwd(), 'src'),
+        { persistent: true });
 
 var options = {
     host: 'localhost',
