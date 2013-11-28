@@ -17,7 +17,11 @@ watcher.on('all', function(type, file, stat) {
 
     opts.path = makePath(type, file);
 
-    http.get(opts).on('error', function(err) {
+    http.get(opts, function(res) {
+        if (res.statusCode === 200) {
+            console.log('Generated: ' + file);
+        }
+    }).on('error', function(err) {
         if (err) throw err;
     });
 });
